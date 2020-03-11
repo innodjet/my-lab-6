@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AntvF2React from "antv-f2-react";
+import { datas } from "../data/data";
 
 function Visualization() {
   const [data, setData] = useState([]);
@@ -7,10 +8,11 @@ function Visualization() {
   const transformData = data => {
     // Get unique device ids;
     const uniqueId = {};
-    data.forEach(el => {
+    data.map(el => {
       if (el.deviceid !== uniqueId[el.deviceid]) {
         uniqueId[el.deviceid] = el.deviceid;
       }
+      return 1;
     });
 
     // Group data based on the device ids
@@ -21,11 +23,11 @@ function Visualization() {
 
     // Sum usage based on device ids and return a nice formatted data for visualization purpose
     const finalData = [];
-    groupData.forEach(el => {
+    groupData.map(el => {
       let deviceid;
       let usageSum = el.reduce(function(accumulator, currentValue) {
         deviceid = currentValue.deviceid;
-        return accumulator + Number(currentValue["usage\r"]);
+        return accumulator + Number(currentValue.usage);
       }, 0);
       let xSum = el.reduce(function(accumulator, currentValue) {
         deviceid = currentValue.deviceid;
@@ -37,31 +39,36 @@ function Visualization() {
       }, 0);
       finalData.push({
         deviceid: deviceid,
-        sessionCounts: el.filter(ol => Number(ol["usage\r"]) > 0).length,
+        sessionCounts: el.filter(ol => Number(ol.usage) > 0).length,
         x: xSum,
         y: ySum,
         usage: usageSum
       });
+      return 1;
     });
 
     // return final data
     return finalData;
   };
 
+  // const getData = () => {
+  //   const _sv2json = require("sv2json");
+  //   const request = require("request");
+  //   const options = {
+  //     method: "GET",
+  //     url:
+  //       "https://raw.githubusercontent.com/hologram-io/carthage/master/usage.tsv",
+  //     headers: {}
+  //   };
+  //   request(options, function(error, response) {
+  //     if (error) throw new Error(error);
+  //     const jsonVersionOfTsvData = _sv2json(response.body, "\t");
+  //     setData(transformData(jsonVersionOfTsvData));
+  //   });
+  // };
+
   const getData = () => {
-    const _sv2json = require("sv2json");
-    const request = require("request");
-    const options = {
-      method: "GET",
-      url:
-        "https://raw.githubusercontent.com/hologram-io/carthage/master/usage.tsv",
-      headers: {}
-    };
-    request(options, function(error, response) {
-      if (error) throw new Error(error);
-      const jsonVersionOfTsvData = _sv2json(response.body, "\t");
-      setData(transformData(jsonVersionOfTsvData));
-    });
+    setData(transformData(datas));
   };
 
   // Get the data when the component is mounted
