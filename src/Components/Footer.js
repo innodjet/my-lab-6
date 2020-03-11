@@ -8,12 +8,16 @@ const Footer = () => {
         <div className="card-body">
           <h5 className="card-title"> Project Description: </h5>
           <p className="card-text">
-            <u>Graph</u>: The Graph is to showcase the progression of the data
-            usage.
+            <u>Histogram-1</u>: This Histogram shows the total sessions based on
+            the devices.
           </p>
           <p className="card-text">
-            <u>Histogram</u>: This Histogram implementation is centered on the
-            total data usage in KB based on the device.
+            <u>Graph</u>: The Graph is to showcase the progression of the data
+            usage of the devices.
+          </p>
+          <p className="card-text">
+            <u>Histogram-2</u>: This Histogram show the total data usage in KB
+            based on the devices.
           </p>
           <hr />
           <h5 className="card-title"> Technologies used in this project: </h5>

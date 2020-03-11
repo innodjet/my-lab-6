@@ -37,6 +37,7 @@ function Visualization() {
       }, 0);
       finalData.push({
         deviceid: deviceid,
+        sessionCounts: el.filter(ol => Number(ol["usage\r"]) > 0).length,
         x: xSum,
         y: ySum,
         usage: usageSum
@@ -76,6 +77,14 @@ function Visualization() {
     chart.render();
   });
 
+  const VisualizationSessionCountHistogram = AntvF2React(chart => {
+    chart
+      .interval()
+      .position("deviceid*sessionCounts")
+      .color("deviceid");
+    chart.render();
+  });
+
   const VisualizationGraph = AntvF2React(chart => {
     chart.line().position("x*y");
     chart.render();
@@ -89,6 +98,16 @@ function Visualization() {
   return (
     <div className="container">
       <div className="card">
+        <div className="card-header">Histogram-1</div>
+        <div className="card-body">
+          <VisualizationSessionCountHistogram
+            width={style.width}
+            height={style.height}
+            data={data}
+          />
+        </div>
+      </div>
+      <div className="card">
         <div className="card-header">Graph</div>
         <div className="card-body">
           <VisualizationGraph
@@ -99,7 +118,7 @@ function Visualization() {
         </div>
       </div>
       <div className="card">
-        <div className="card-header"> Histogram</div>
+        <div className="card-header">Histogram-2</div>
         <div className="card-body">
           <VisualizationHistogram
             width={style.width}
