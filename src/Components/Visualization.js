@@ -51,22 +51,6 @@ function Visualization() {
     return finalData;
   };
 
-  // const getData = () => {
-  //   const _sv2json = require("sv2json");
-  //   const request = require("request");
-  //   const options = {
-  //     method: "GET",
-  //     url:
-  //       "https://raw.githubusercontent.com/hologram-io/carthage/master/usage.tsv",
-  //     headers: {}
-  //   };
-  //   request(options, function(error, response) {
-  //     if (error) throw new Error(error);
-  //     const jsonVersionOfTsvData = _sv2json(response.body, "\t");
-  //     setData(transformData(jsonVersionOfTsvData));
-  //   });
-  // };
-
   const getData = () => {
     setData(transformData(datas));
   };
