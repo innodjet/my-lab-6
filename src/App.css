@@ -6,15 +6,27 @@
   margin-bottom: 15px;
 }
 
-@media screen and (max-width: 1185px) {
+@media screen and (max-width: 1186px) {
   canvas {
     width: 900px !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  canvas {
+    width: 660px !important;
   }
 }
 
 @media screen and (max-width: 954px) {
   canvas {
     width: 650px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  canvas {
+    width: 470px !important;
   }
 }
 
