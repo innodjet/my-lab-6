@@ -12,7 +12,7 @@ function Visualization() {
       if (el.deviceid !== uniqueId[el.deviceid]) {
         uniqueId[el.deviceid] = el.deviceid;
       }
-      return 1;
+      return el;
     });
 
     // Group data based on the device ids
@@ -44,7 +44,7 @@ function Visualization() {
         y: ySum,
         usage: usageSum
       });
-      return 1;
+      return el;
     });
 
     // return final data
