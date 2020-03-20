@@ -8,7 +8,7 @@ function Visualization() {
   const transformData = data => {
     // Get unique device ids;
     const uniqueId = {};
-    data.map(el => {
+    data.forEach(el => {
       if (el.deviceid !== uniqueId[el.deviceid]) {
         uniqueId[el.deviceid] = el.deviceid;
       }
@@ -23,7 +23,7 @@ function Visualization() {
 
     // Sum usage based on device ids and return a nice formatted data for visualization purpose
     const finalData = [];
-    groupData.map(el => {
+    groupData.forEach(el => {
       let deviceid;
       let usageSum = el.reduce(function(accumulator, currentValue) {
         deviceid = currentValue.deviceid;
@@ -44,7 +44,6 @@ function Visualization() {
         y: ySum,
         usage: usageSum
       });
-      return el;
     });
 
     // return final data
